@@ -15,9 +15,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user")
+ * @ORM\EntityListeners({"App\Listener\UserListener"})
  */
 class User implements UserInterface, \Serializable
 {
@@ -43,6 +45,16 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
+     * @var bool
+     */
+    private $isPasswordUpdate = true;
 
     /**
      * @var array
@@ -107,6 +119,38 @@ class User implements UserInterface, \Serializable
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword(string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPasswordUpdate(): bool
+    {
+        return $this->isPasswordUpdate;
+    }
+
+    /**
+     * @param bool $isPasswordUpdate
+     */
+    public function setIsPasswordUpdate(bool $isPasswordUpdate): void
+    {
+        $this->isPasswordUpdate = $isPasswordUpdate;
     }
 
     /**

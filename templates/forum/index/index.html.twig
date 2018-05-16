@@ -2,6 +2,6 @@
 
 {% block body %}
     {% for thread in threads %}
-        {{ thread }}
+        <a href="{{ path('forum_thread_show', {'slug': thread.slug}) }}">{{ thread }}</a>
     {% endfor %}
 {% endblock %}

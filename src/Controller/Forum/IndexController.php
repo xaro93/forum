@@ -15,6 +15,7 @@ use App\Entity\Post;
 use App\Entity\Thread;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**composer require symfony/twig-bundle
  * Index controller.
@@ -26,6 +27,7 @@ class IndexController extends BaseController
 
     /**
      * @Route("/", name="forum_index")
+     * @Method({"GET"})
      */
     public function index(): Response
     {

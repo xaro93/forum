@@ -6,7 +6,15 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% include 'forum/partials/head.html.twig' %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% include 'forum/partials/footer.html.twig' %}
+
+        {% block javascripts %}
+            <script src="{{ asset('build/manifest.js') }}"></script>
+            <script src="{{ asset('build/js/common.js') }}"></script>
+            <script src="{{ asset('build/js/app.js') }}"></script>
+        {% endblock %}
+
     </body>
 </html>

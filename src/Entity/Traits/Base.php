@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Xaro
- * Date: 28.03.2018
- * Time: 22:55
- */
 
 namespace App\Entity\Traits;
 
