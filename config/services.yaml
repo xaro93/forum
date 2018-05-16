@@ -25,3 +25,26 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    thread_listener:
+            class: App\Listener\ThreadListener
+            arguments:
+                        - "@doctrine.orm.entity_manager"
+            tags:
+                - { name: doctrine.orm.entity_listener }
+                - { name: doctrine.orm.entity_listener, entity_manager: custom }
+
+    user_listener:
+                class: App\Listener\UserListener
+                arguments:
+                            - "@doctrine.orm.entity_manager"
+                tags:
+                    - { name: doctrine.orm.entity_listener }
+                    - { name: doctrine.orm.entity_listener, entity_manager: custom }
+
+    app.security.login:
+          class: App\Listener\LoginListener
+          arguments:
+            - "@doctrine.orm.entity_manager"
+          tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onLogin }

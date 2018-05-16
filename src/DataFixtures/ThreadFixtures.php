@@ -22,11 +22,11 @@ class ThreadFixtures extends Fixture
 
         for ($i = 0; $i < 10; $i++) {
             $thread = new Thread();
-            $thread->setTitle('Thread: ' . $i);
+            $thread->setTitle('Thread ' . $i);
 
             $post = new Post();
             $post->setThread($thread);
-            $post->setContent('First post for thread: ' . $i);
+            $post->setContent('First post for thread ' . $i);
 
             $manager->persist($thread);
             $manager->persist($post);

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use App\Entity\Traits\Base;
+use App\Entity\Traits\Slug;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,10 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ThreadRepository")
  * @ORM\Table(name="thread")
+ * @ORM\EntityListeners({"App\Listener\ThreadListener"})
  */
 class Thread
 {
-    use Base;
+    use Base,
+        Slug;
 
     /**
      * @ORM\OneToMany(targetEntity="Post", mappedBy="thread")
