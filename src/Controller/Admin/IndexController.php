@@ -6,7 +6,7 @@
  * Time: 11:12
  */
 
-namespace App\Controller\Forum;
+namespace App\Controller\Admin;
 
 
 use App\Controller\BaseController;
@@ -26,15 +26,14 @@ class IndexController extends BaseController
 {
 
     /**
-     * @Route("/", name="forum_index")
+     * @Route("/", name="admin_index")
      * @Method({"GET"})
      */
     public function index(): Response
     {
         $return = [
-            'threads' => $this->getRepository(Thread::class)->findAll(),
         ];
-        return $this->render('forum/index/index.html.twig', $return);
+        return $this->render('admin/index/index.html.twig', $return);
     }
 
 }

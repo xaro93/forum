@@ -29,6 +29,13 @@ class Post
     private $user;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    private $body;
+
+    /**
      * @return Thread
      */
     public function getThread(): Thread
@@ -61,26 +68,19 @@ class Post
     }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="text")
-     */
-    private $content;
-
-    /**
      * @return string
      */
-    public function getContent(): string
+    public function getBody(): string
     {
-        return $this->content;
+        return $this->body;
     }
 
     /**
-     * @param string $content
+     * @param string $body
      */
-    public function setContent(string $content): void
+    public function setBody(string $body): void
     {
-        $this->content = $content;
+        $this->body = $body;
     }
 
 }

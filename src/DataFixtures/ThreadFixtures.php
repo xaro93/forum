@@ -26,7 +26,7 @@ class ThreadFixtures extends Fixture
 
             $post = new Post();
             $post->setThread($thread);
-            $post->setContent('First post for thread ' . $i);
+            $post->setBody('First post for thread ' . $i);
 
             $manager->persist($thread);
             $manager->persist($post);

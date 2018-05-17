@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="user")
- * @ORM\EntityListeners({"App\Listener\UserListener"})
+ * @ORM\EntityListeners({"App\Listener\Entity\UserListener"})
  */
 class User implements UserInterface, \Serializable
 {

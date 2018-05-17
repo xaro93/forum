@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listener;
+namespace App\Listener\Entity;
 
 use App\Entity\Thread;
 use App\Utils\Slugger;
