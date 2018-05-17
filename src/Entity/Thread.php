@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ThreadRepository")
  * @ORM\Table(name="thread")
- * @ORM\EntityListeners({"App\Listener\ThreadListener"})
+ * @ORM\EntityListeners({"App\Listener\Entity\ThreadListener"})
  */
 class Thread
 {
@@ -26,8 +26,9 @@ class Thread
 
     /**
      * @ORM\Column(type="string")
+     *
      */
-    private $title;
+    private $title = '';
 
     public function __construct()
     {

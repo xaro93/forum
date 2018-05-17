@@ -1,0 +1,19 @@
+fos_ck_editor:
+    default_config: global_config
+    configs:
+        global_config:
+            toolbarGroups:
+                - { name: clipboard, groups: [clipboard, undo] }
+                - { name: document, groups: [mode, document, doctools] }
+                - { name: editing, groups: [find, selection, spellchecker, editing] }
+                - { name: forms, groups: [forms] }
+                - { name: basicstyles, groups: [basicstyles, cleanup] }
+                - { name: paragraph, groups: [list, indent, blocks, align, bidi, paragraph] }
+                - { name: links, groups: [links] }
+                - { name: insert, groups: [insert] }
+                - { name: styles, groups: [styles] }
+                - { name: colors, groups: [colors] }
+                - { name: tools, groups: [tools] }
+                - { name: others, groups: [others] }
+                - { name: about, groups: [about] }
+            removeButtons: Source,Save,Templates,NewPage,Preview,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,CopyFormatting,RemoveFormat,CreateDiv,BidiLtr,BidiRtl,Language,Link,Unlink,Anchor,Image,Flash,Table,HorizontalRule,Smiley,PageBreak,Iframe,About,Maximize,TextColor,BGColor,Styles,Format,Font,FontSize,SpecialChar
