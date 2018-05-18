@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use App\Entity\Traits\Base;
+use App\Entity\Traits\Body;
 use App\Entity\Traits\Slug;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Thread
 {
     use Base,
-        Slug;
+        Slug,
+        Body;
 
     /**
      * @ORM\OneToMany(targetEntity="Post", mappedBy="thread")

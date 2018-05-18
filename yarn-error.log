@@ -1,17 +1,20 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js
+  /usr/bin/node /usr/share/yarn/bin/yarn.js install
 
 PATH: 
   /home/vagrant/bin:/home/vagrant/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 Yarn version: 
-  1.5.1
+  1.6.0
 
 Node version: 
-  8.11.1
+  8.11.2
 
 Platform: 
   linux x64
+
+Trace: 
+  Error: EIO: i/o error, symlink '../../../../webpack/bin/webpack.js' -> '/var/www/forum/node_modules/@symfony/webpack-encore/node_modules/.bin/webpack'
 
 npm manifest: 
   {
@@ -21,14 +24,12 @@ npm manifest:
       "bootstrap-sass": "^3.3.7",
       "bootstrap-tagsinput": "^0.7.1",
       "bootswatch": "^3.3.7",
-  //    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
       "font-awesome": "^4.7.0",
       "highlight.js": "^9.12.0",
       "imports-loader": "^0.7.1",
       "jquery": "^3.2.1",
       "lato-font": "^3.0.0",
       "node-sass": "^4.5.3",
-      "sass-loader": "^6.0.5",
       "typeahead.js": "^0.11.1"
     },
     "scripts": {
@@ -4788,12 +4789,3 @@ Lockfile:
       cliui "^2.1.0"
       decamelize "^1.0.0"
       window-size "0.1.0"
-
-Trace: 
-  SyntaxError: /var/www/forum/package.json: Unexpected token / in JSON at position 194
-      at JSON.parse (<anonymous>)
-      at /usr/share/yarn/lib/cli.js:1036:59
-      at Generator.next (<anonymous>)
-      at step (/usr/share/yarn/lib/cli.js:98:30)
-      at /usr/share/yarn/lib/cli.js:109:13
-      at <anonymous>
