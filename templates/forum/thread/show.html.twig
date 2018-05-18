@@ -1,7 +1,8 @@
 {% extends 'forum/base.html.twig' %}
 
 {% block body %}
-    {{ thread.title }} <br> <br>
+    {{ thread.title }} <br>
+    {{ thread.body|raw }}
     <hr>
     {% for post in thread %}
         {{ post }} <br>

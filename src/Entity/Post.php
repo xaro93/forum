@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use App\Entity\Traits\Base;
+use App\Entity\Traits\Body;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,7 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
-    use Base;
+    use Base,
+        Body;
 
     /**
      * Many Posts have One Thread.
@@ -27,13 +29,6 @@ class Post
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text")
-     */
-    private $body;
 
     /**
      * @return Thread
@@ -65,22 +60,6 @@ class Post
     public function setUser(User $user): void
     {
         $this->user = $user;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBody(): string
-    {
-        return $this->body;
-    }
-
-    /**
-     * @param string $body
-     */
-    public function setBody(string $body): void
-    {
-        $this->body = $body;
     }
 
 }

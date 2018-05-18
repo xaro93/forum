@@ -10,6 +10,7 @@ namespace App\Form\Forum;
 
 
 use App\Entity\Thread;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,13 +29,13 @@ class ThreadType extends AbstractType
                 null,
                 [
                     'label' => 'label.title',
+                ])
+            ->add(
+                'body',
+                CKEditorType::class,
+                [
+                    'label' => 'label.body',
                 ]);
-//            ->add(
-//                'posts',
-//                PostType::class,
-//                [
-//                ]
-//            );
 
     }
 
