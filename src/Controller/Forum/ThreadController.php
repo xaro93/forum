@@ -48,6 +48,7 @@ class ThreadController extends BaseController
     public function new(Request $request): Response
     {
         $thread = new Thread();
+        $thread->setUser($this->getUser());
 
         $form = $this->createForm(ThreadType::class, $thread);
         $form->handleRequest($request);

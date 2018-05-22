@@ -11,14 +11,12 @@ namespace App\Controller\Forum;
 
 use App\Controller\BaseController;
 
-use App\Entity\Post;
-use App\Entity\Thread;
 use App\Entity\User;
-use App\Form\Forum\UserType;
+use App\Form\Forum\RegisterType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -26,11 +24,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  *
  * @Route("/account")
  */
-class Account extends BaseController
+class AccountController extends BaseController
 {
 
     /**
+     *
      * @Route("/login", name="forum_account_login")
+     * @Method({"GET", "POST"})
      */
     public function login(AuthenticationUtils $helper): Response
     {
@@ -43,12 +43,15 @@ class Account extends BaseController
     }
 
     /**
-     * @Route("/register", name="forum_account_login")
+     * @Route("/register", name="forum_account_register")
+     * @Method({"GET", "POST"})
      */
     public function register(Request $request): Response
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $user->setRoles([User::ROLE_USER]);
+
+        $form = $this->createForm(RegisterType::class, $user);
 
         $form->handleRequest($request);
 

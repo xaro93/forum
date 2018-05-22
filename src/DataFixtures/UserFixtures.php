@@ -25,6 +25,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setEmail('user@forum.test');
         $user->setUsername('user@forum.test');
+        $user->setPlainPassword('admin');
 
         $this->addReference('user', $user);
         $manager->persist($user);
@@ -34,6 +35,7 @@ class UserFixtures extends Fixture
         $moderator->setRoles(['ROLE_MODERATOR']);
         $moderator->setEmail('moderator@forum.test');
         $moderator->setUsername('moderator@forum.test');
+        $moderator->setPlainPassword('admin');
 
         $this->addReference('moderator', $moderator);
         $manager->persist($moderator);

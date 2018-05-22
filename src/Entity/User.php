@@ -25,31 +25,35 @@ class User implements UserInterface, \Serializable
 {
     use Base;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true)
-     */
-    private $username;
+    const ROLE_USER = 'ROLE_USER';
+    const ROLE_MODERATOR = 'ROLE_MODERATOR';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", unique=true)
      */
-    private $email;
+    private $username = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $email = '';
 
     /**
      * @var string
      *
      * @ORM\Column(type="string")
      */
-    private $password;
+    private $password =  '';
 
     /**
      * @var string
      */
-    private $plainPassword;
+    private $plainPassword = '';
 
     /**
      * @var bool
@@ -67,6 +71,11 @@ class User implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
      */
     private $posts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Thread", mappedBy="user")
+     */
+    private $threads;
 
     public function __construct()
     {
@@ -161,7 +170,7 @@ class User implements UserInterface, \Serializable
         $roles = $this->roles;
         // guarantees that a user always has at least one role for security
         if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
+            $roles[] = User::ROLE_USER;
         }
         return array_unique($roles);
     }
@@ -172,6 +181,31 @@ class User implements UserInterface, \Serializable
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
+    }
+
+    /**
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole(string $role): bool
+    {
+        return in_array($role, (array) $this->roles);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isModerator(): bool
+    {
+        return $this->hasRole(User::ROLE_MODERATOR);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->hasRole(User::ROLE_ADMIN);
     }
 
     /**

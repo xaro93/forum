@@ -26,7 +26,6 @@ class Post
     /**
      * Many Posts have One User.
      * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
