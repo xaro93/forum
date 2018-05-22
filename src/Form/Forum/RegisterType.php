@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class RegisterType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -35,6 +35,17 @@ class UserType extends AbstractType
                 null,
                 [
                     'label' => 'label.email',
+                ]
+            )
+            ->add(
+                'password',
+                RepeatedType::class,
+                [
+                    'type'            => PasswordType::class,
+                    'invalid_message' => 'Password must match',
+                    'required'        => true,
+                    'first_options'   => array('label' => 'Password'),
+                    'second_options'  => array('label' => 'Repeat password'),
                 ]
             );
 

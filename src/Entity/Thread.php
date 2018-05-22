@@ -27,6 +27,12 @@ class Thread
     private $posts;
 
     /**
+     * Many Posts have One User.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="string")
      *
      */
@@ -66,6 +72,22 @@ class Thread
     public function removePost(Post $post)
     {
         $this->posts->remove($post);
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 
     /**
