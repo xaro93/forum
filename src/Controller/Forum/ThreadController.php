@@ -14,6 +14,7 @@ use App\Controller\BaseController;
 use App\Entity\Thread;
 use App\Form\Forum\ThreadType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @Route("/thread")
  */
-class ThreadController extends BaseController
+class ThreadController extends ForumController
 {
 
     /**
@@ -48,26 +49,11 @@ class ThreadController extends BaseController
     public function new(Request $request): Response
     {
         $thread = new Thread();
-        $thread->setUser($this->getUser());
+    //    $thread->setUser($this->getUser());
 
-        $form = $this->createForm(ThreadType::class, $thread);
-        $form->handleRequest($request);
+        $return = $this->newEntity($request, $thread);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($thread);
-            $em->flush();
-
-            $this->addFlash('success', 'post.created_successfully');
-
-            return $this->redirectToRoute('forum_index');
-        }
-
-        return $this->render('forum/thread/new.html.twig', [
-            'entity' => $thread,
-            'form' => $form->createView(),
-        ]);
+        return $this->render('forum/thread/new.html.twig', $return);
     }
 
 }
