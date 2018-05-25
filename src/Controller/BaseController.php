@@ -18,7 +18,6 @@ class BaseController extends AbstractController
 {
 
     public $object = null;
-    public $formPath = __NAMESPACE__;
     private $user = null;
 
     public function getRepository($repository)
@@ -56,7 +55,9 @@ class BaseController extends AbstractController
      */
     public function getFormPath()
     {
-        return str_replace('Controller', 'Form', $this->formPath) . '\\';
+        $namespace = (new \ReflectionClass($this))->getNamespaceName();
+
+        return str_replace('Controller', 'Form', $namespace) . '\\';
     }
 
     /**
@@ -70,13 +71,15 @@ class BaseController extends AbstractController
     public function newEntity(Request $request, $entity, $formOptions = [], $route = null, $routeOptions = [])
     {
 
-        $form = $this->createForm($this->getFormPath() . $this->object . 'Type', $entity);
+        $entityName = (new \ReflectionClass($entity))->getShortName();
 
+        $form = $this->createForm($this->getFormPath() . $entityName . 'Type', $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($entity);
-            $this->em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
 
             if (is_null($route)) {
                 return $this->redirect($request->server->get('HTTP_REFERER'));
