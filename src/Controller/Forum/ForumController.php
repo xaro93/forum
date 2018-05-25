@@ -18,6 +18,5 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class ForumController extends BaseController
 {
-    public $formPath = __NAMESPACE__;
 
 }
