@@ -3,6 +3,8 @@
 namespace App\Entity\Traits;
 
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 trait Body
 {
 
@@ -10,6 +12,10 @@ trait Body
      * @var string
      *
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *     min="3",
+     *     max="10000"
+     * )
      */
     private $body = '';
 
