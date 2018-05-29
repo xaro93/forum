@@ -38,14 +38,14 @@ class RegisterType extends AbstractType
                 ]
             )
             ->add(
-                'password',
+                'plainPassword',
                 RepeatedType::class,
                 [
                     'type'            => PasswordType::class,
                     'invalid_message' => 'Password must match',
                     'required'        => true,
-                    'first_options'   => array('label' => 'Password'),
-                    'second_options'  => array('label' => 'Repeat password'),
+                    'first_options'   => array('label' => 'label.password'),
+                    'second_options'  => array('label' => 'label.password'),
                 ]
             );
 

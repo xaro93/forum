@@ -14,6 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -33,6 +34,10 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(type="string", unique=true)
+     * @Assert\Length(
+     *     min="3",
+     *     max="15"
+     * )
      */
     private $username = '';
 
@@ -40,6 +45,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(type="string", unique=true)
+     * @Assert\Email()
      */
     private $email = '';
 
@@ -47,6 +53,10 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Assert\Length(
+     *     min="6",
+     *     max="32"
+     * )
      */
     private $password =  '';
 

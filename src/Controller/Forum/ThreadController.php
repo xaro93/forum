@@ -31,12 +31,13 @@ class ThreadController extends ForumController
      * @Route("/{slug}/show", name="forum_thread_show")
      * @Method({"GET"})
      */
-    public function show(Thread $thread): Response
+    public function show(Request $request, Thread $thread): Response
     {
         $return = [
-            'thread' => $thread,
+            'thread' => $thread
         ];
-        return $this->render('forum/thread/show.html.twig', $return);
+
+        return $this->view('forum/thread/show.html.twig', $return);
     }
 
     /**
@@ -49,11 +50,24 @@ class ThreadController extends ForumController
     public function new(Request $request): Response
     {
         $thread = new Thread();
-    //    $thread->setUser($this->getUser());
+        $thread->setUser($this->getUser());
 
         $return = $this->newEntity($request, $thread);
 
-        return $this->render('forum/thread/new.html.twig', $return);
+        return $this->view('forum/thread/new.html.twig', $return);
     }
 
+    /**
+     * Edit Thread entity.
+     *
+     * @Route("/{slug}/edit", name="forum_thread_edit")
+     * @Method({"GET", "POST"})
+     *
+     */
+    public function edit(Request $request, Thread $thread): Response
+    {
+        $return = $this->editEntity($request, $thread);
+
+        return $this->view('forum/thread/new.html.twig', $return);
+    }
 }
