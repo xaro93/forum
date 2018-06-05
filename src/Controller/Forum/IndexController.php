@@ -34,7 +34,7 @@ class IndexController extends BaseController
         $return = [
             'threads' => $this->getRepository(Thread::class)->findAll(),
         ];
-        return $this->render('forum/index/index.html.twig', $return);
+        return $this->view('forum/index/index.html.twig', $return);
     }
 
 }

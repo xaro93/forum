@@ -38,6 +38,11 @@ class Thread
      */
     private $title = '';
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $postsCount = 0;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
