@@ -25,6 +25,10 @@ class ThreadListener implements EventSubscriber
 
     public function prePersist(Thread $thread)
     {
+        $this->setSlug($thread);
+    }
+
+    private function setSlug(Thread $thread){
         $slug = $this->slugger->slugify($thread->getTitle());
         $thread->setSlug($slug);
     }

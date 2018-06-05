@@ -18,8 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class BaseController extends AbstractController
 {
-
-    public $object = null;
+    private $entityName = null;
     private $user = null;
 
     public function getRepository($repository)
@@ -35,7 +34,7 @@ class BaseController extends AbstractController
     public function getUser(): User
     {
         if (!$this->user instanceof User) {
-              $this->setUser($this->get('security.token_storage')->getToken()->getUser());
+            $this->setUser($this->get('security.token_storage')->getToken()->getUser());
         }
 
         return $this->user;
@@ -47,6 +46,34 @@ class BaseController extends AbstractController
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityName(): string
+    {
+        if($this->entityName !== null){
+            return $this->entityName;
+        }
+
+        $className = get_class($this);
+
+        $controllerName = substr($className, strrpos($className, '\\') + 1);
+
+        $entityName = strtolower(basename(str_replace('Controller', '', $controllerName)));
+
+        $this->setEntityName($entityName);
+
+        return $this->entityName;
+    }
+
+    /**
+     * @param null $entityName
+     */
+    public function setEntityName($entityName): void
+    {
+        $this->entityName = $entityName;
     }
 
     /**
@@ -129,9 +156,13 @@ class BaseController extends AbstractController
 
     public function view(string $view, $parameters = [], Response $response = null): Response
     {
-        if ($parameters instanceof RedirectResponse){
+        if ($parameters instanceof RedirectResponse) {
             return $parameters;
         }
+
+        $parameters += [
+            'entity_name' => $this->getEntityName(),
+        ];
 
         return $this->render($view, $parameters, $response);
     }

@@ -1,7 +1,10 @@
 {% extends 'forum/base.html.twig' %}
 
 {% block body %}
-    {% for thread in threads %}
-        <a href="{{ path('forum_thread_show', {'slug': thread.slug}) }}">{{ thread }}</a>
-    {% endfor %}
+    <ul>
+        {% for thread in threads %}
+            <li><a href="{{ path('forum_thread_show', {'slug': thread.slug}) }}">{{ thread }}</a></li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}

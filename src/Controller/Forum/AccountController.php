@@ -63,7 +63,7 @@ class AccountController extends BaseController
             return $this->redirectToRoute('forum_account_login');
         }
 
-        return $this->render('forum/account/register.html.twig', [
+        return $this->view('forum/account/register.html.twig', [
             'form' => $form->createView(),
         ]);
     }

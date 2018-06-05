@@ -12,20 +12,40 @@ class UserListener implements EventSubscriber
     private $entityManager;
     private $passwordEncoder;
 
+    /**
+     * UserListener constructor.
+     *
+     * @param EntityManager $entityManager
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
     public function __construct(EntityManager $entityManager, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->entityManager = $entityManager;
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    /**
+     * @return array
+     */
     public function getSubscribedEvents()
     {
         return ['prePersist'];
     }
 
+    /**
+     * @param User $user
+     */
     public function prePersist(User $user)
     {
-        if($user->getPlainPassword()){
+        $this->setPassword($user);
+    }
+
+    /**
+     * @param User $user
+     */
+    private function setPassword(User $user)
+    {
+        if ($user->getPlainPassword()) {
             $password = $this->passwordEncoder->encodePassword(
                 $user,
                 $user->getPlainPassword()
