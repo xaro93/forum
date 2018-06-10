@@ -28,6 +28,7 @@ class Thread
 
     /**
      * Many Posts have One User.
+     *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
      */
     private $user;

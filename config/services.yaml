@@ -35,6 +35,14 @@ services:
                 - { name: doctrine.orm.entity_listener }
                 - { name: doctrine.orm.entity_listener, entity_manager: custom }
 
+    post_listener:
+            class: App\Listener\Entity\PostListener
+            arguments:
+                        - "@doctrine.orm.entity_manager"
+            tags:
+                - { name: doctrine.orm.entity_listener }
+                - { name: doctrine.orm.entity_listener, entity_manager: custom }
+
     user_listener:
                 class: App\Listener\Entity\UserListener
                 arguments:
