@@ -20,14 +20,14 @@ class ThreadFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $path = $this->container->get('kernel')->getRootDir();
-        $fileTitlePath = $path .'/DataFixtures/files/loremTitle.txt';
-        $fileBodyPath = $path .'/DataFixtures/files/loremBody.txt';
-
-        $fileSystem = new Filesystem();
+//        $path = $this->container->get('kernel')->getRootDir();
+//        $fileTitlePath = $path .'/DataFixtures/files/loremTitle.txt';
+//        $fileBodyPath = $path .'/DataFixtures/files/loremBody.txt';
+//
+//        $fileSystem = new Filesystem();
 
         for ($i = 0; $i < 1000; $i++) {
-            $title = 'Lorem Ipsum';
+            $title = 'Lorem Ipsum'. $i;
             $body = 'Lorem Ipsum';
 
             $thread = new Thread();
