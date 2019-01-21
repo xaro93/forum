@@ -5,6 +5,8 @@ namespace App\Entity;
 
 use App\Entity\Traits\Base;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NotificationTypeRepository")
@@ -16,7 +18,9 @@ class NotificationType
     const THREAD_EDIT = 'thread_edit';
     const THREAD_DELETE = 'thread_delete';
 
-    use Base;
+    use Base,
+        Timestampable,
+        SoftDeletable;
 
 
 }

@@ -13,6 +13,8 @@ use App\Entity\Traits\Base;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -24,7 +26,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User implements UserInterface, \Serializable
 {
-    use Base;
+    use Base,
+        Timestampable,
+        SoftDeletable;
 
     const ROLE_USER = 'ROLE_USER';
     const ROLE_MODERATOR = 'ROLE_MODERATOR';
