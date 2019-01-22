@@ -6,6 +6,8 @@ namespace App\Entity;
 use App\Entity\Traits\Base;
 use App\Entity\Traits\Body;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
@@ -14,7 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Post
 {
     use Base,
-        Body;
+        Body,
+        Timestampable,
+        SoftDeletable;
 
     /**
      * Many Posts have One Thread.

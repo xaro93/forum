@@ -5,6 +5,8 @@ namespace App\Entity;
 
 use App\Entity\Traits\Base;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NotificationRepository")
@@ -12,7 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Notification
 {
-    use Base;
+    use Base,
+        Timestampable,
+        SoftDeletable;
 
     /**
      * Many Notifications have One NotificationType.
